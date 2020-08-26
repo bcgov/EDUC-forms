@@ -12,9 +12,6 @@ import "bootstrap/dist/css/bootstrap.css";
 var Survey = SurveyVue.Survey;
 Survey.cssType = "bootstrap";
 
-
-
-
 import * as widgets from "surveyjs-widgets";
 
 import { init as customWidget } from "../components/customwidget";
@@ -36,158 +33,508 @@ SurveyVue.Serializer.addProperty("question", "tag:number");
 
 export default {
   components: {
-    Survey
+    Survey,
   },
   data() {
     var json = {
-      title: "Product Feedback Survey Example",
-      showProgressBar: "top",
       pages: [
         {
-          questions: [
+          name: "page1",
+          elements: [
             {
-              name: "date",
-              type: "datepicker",
-              inputType: "date",
-              title: "Your favorite date:",
-              dateFormat: "mm/dd/yy",
-              isRequired: true
+              type: "html",
+              name: "question4",
             },
             {
-              type: "matrix",
-              name: "Quality",
-              title:
-                "Please indicate if you agree or disagree with the following statements",
-              columns: [
+              type: "html",
+              name: "contact_information",
+              html: "<h2>Contact Information</h2>",
+            },
+            {
+              type: "dropdown",
+              name: "schooldistrict",
+              title: "School District ",
+              choices: [
                 {
-                  value: 1,
-                  text: "Strongly Disagree"
+                  value: "School District 5 Southeast Kootenay",
+                  text: "School District 5 Southeast Kootenay",
                 },
                 {
-                  value: 2,
-                  text: "Disagree"
+                  value: "School District 6 Rocky Mountain",
+                  text: "School District 6 Rocky Mountain",
                 },
                 {
-                  value: 3,
-                  text: "Neutral"
+                  value: "School District 8 Kootenay Lake",
+                  text: "School District 8 Kootenay Lake",
                 },
-                {
-                  value: 4,
-                  text: "Agree"
-                },
-                {
-                  value: 5,
-                  text: "Strongly Agree"
-                }
               ],
-              rows: [
-                {
-                  value: "affordable",
-                  text: "Product is affordable"
-                },
-                {
-                  value: "does what it claims",
-                  text: "Product does what it claims"
-                },
-                {
-                  value: "better then others",
-                  text: "Product is better than other products on the market"
-                },
-                {
-                  value: "easy to use",
-                  text: "Product is easy to use"
-                }
-              ]
             },
             {
-              type: "rating",
-              name: "satisfaction",
-              title: "How satisfied are you with the Product?",
-              mininumRateDescription: "Not Satisfied",
-              maximumRateDescription: "Completely satisfied"
+              type: "text",
+              name: "firstname",
+              title: "Firstname",
             },
             {
-              type: "rating",
-              name: "recommend friends",
-              visibleIf: "{satisfaction} > 3",
-              title:
-                "How likely are you to recommend the Product to a friend or co-worker?",
-              mininumRateDescription: "Will not recommend",
-              maximumRateDescription: "I will recommend"
+              type: "text",
+              name: "lastname",
+              title: "Lastname",
+            },
+            {
+              type: "text",
+              name: "Phone",
+              title: "Phone",
+              inputType: "tel",
+            },
+          ],
+        },
+        {
+          name: "page2",
+          elements: [
+            {
+              type: "html",
+              name: "community_link_funding",
+              html: "<h2>CommunityLINK Funding</h2>",
+            },
+            {
+              type: "text",
+              name: "20xx_communitylink_funding",
+              title: "Ministry of Education 20xx/xx CommunityLINK Funding",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "carry-over-funding-from-previous-years",
+              title: "Carry-over Funding from Previous Years",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "funding_leveraged_from_other_sources",
+              title: "Funding Leveraged from Other Sources",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "total_20xx_communitylink_funding",
+              title: "Total 20xx/xx CommunityLINK Funding",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+          ],
+        },
+        {
+          name: "page3",
+          elements: [
+            {
+              type: "html",
+              name: "communitylink_expenditures",
+              html: "<h2>CommunityLINK Expenditures</h2>",
+            },
+            {
+              type: "html",
+              name: "academic_upport",
+              html: "<h3>Academic Support</h3>",
+            },
+            {
+              type: "text",
+              name: "academic_support_teacher",
+              title: "Teacher",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "academic_support_educational_assistant",
+              title: "Educational Assistant",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "academic_support_other",
+              title: "Other",
+            },
+            {
+              type: "text",
+              name: "academic_support_other_value",
+              visibleIf: "{academic_support_other} notempty",
+              title: "Other",
+              titleLocation: "hidden",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "academic_support_total",
+              title: "Academic Support Total",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+          ],
+        },
+        {
+          name: "page4",
+          elements: [
+            {
+              type: "html",
+              name: "Social, Emotional, Behavioural Support",
+              html: "<h3>Social, Emotional, Behavioural Support</h3>",
+            },
+            {
+              type: "text",
+              name: "social_emotional_behavioural_support_teacher",
+              title: "Teacher",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "social_emotional_behavioural_support_youth_worker",
+              title: "Youth Worker",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name:
+                "social_emotional_behavioural_support_indigenous_support_worker",
+              title: "Indigenous Support Worker",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name:
+                "social_emotional_behavioural_support_educational_assistant",
+              title: "Educational Assistant",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "social_emotional_behavioural_support_social_worker",
+              title: "Social Worker",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "social_emotional_behavioural_support_mental_health_worker",
+              title: "Mental Health Worker",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "social_emotional_behavioural_support_other",
+              title: "Other",
+            },
+            {
+              type: "text",
+              name: "social_emotional_behavioural_support_other_value",
+              visibleIf:
+                "{social_emotional_behavioural_support_other} notempty",
+              title: "Other",
+              titleLocation: "hidden",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "social_emotional_behavioural_support_total",
+              visibleIf:
+                "{social_emotional_behavioural_support_other} notempty",
+              title: "Social, Emotional, Behavioural Support Total",
+              titleLocation: "top",
+              placeHolder: "$0.00",
+            },
+          ],
+        },
+        {
+          name: "page5",
+          elements: [
+            {
+              type: "html",
+              name: "food_nutrition",
+              html: "<h3>Food & Nutrition</h3>",
+            },
+            {
+              type: "text",
+              name: "question1",
+              title: "Breakfast",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "food_nutrition_lunch",
+              title: "Lunch ",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "food_nutrition_snack",
+              title: "Snack",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "food_nutrition_school_vacation",
+              title: "School Vacation",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "food_nutrition_total",
+              visibleIf:
+                "{social_emotional_behavioural_support_other} notempty",
+              title: "Food & Nutrition Total",
+              titleLocation: "top",
+              placeHolder: "$0.00",
+            },
+          ],
+        },
+        {
+          name: "page6",
+          elements: [
+            {
+              type: "html",
+              name: "Summary",
+              html: "<h2>Summary</h2>",
+            },
+            {
+              type: "text",
+              name: "total_expenditures",
+              title: "Total Expenditures",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "unspent_funding",
+              title: "Unspent Funding (current year)",
+              inputType: "number",
+              placeHolder: "$0.00",
             },
             {
               type: "comment",
-              name: "suggestions",
-              title: "What would make you more satisfied with the Product?"
-            }
-          ]
-        },
-        {
-          questions: [
-            {
-              type: "radiogroup",
-              name: "price to competitors",
-              title: "Compared to our competitors, do you feel the Product is",
-              choices: [
-                "Less expensive",
-                "Priced about the same",
-                "More expensive",
-                "Not sure"
-              ]
+              name: "justification_of_unspent_funding",
+              title: "Justification of Unspent Funding",
             },
             {
-              type: "radiogroup",
-              name: "price",
-              title: "Do you feel our current price is merited by our product?",
-              choices: [
-                "correct|Yes, the price is about right",
-                "low|No, the price is too low for your product",
-                "high|No, the price is too high for your product"
-              ]
+              type: "comment",
+              name: "plans_for_utilizing_unspent_funding",
+              title: "Plans for Utilizing Unspent Funding ",
             },
-            {
-              type: "multipletext",
-              name: "pricelimit",
-              title: "What is the... ",
-              items: [
-                {
-                  name: "mostamount",
-                  title:
-                    "Most amount you would every pay for a product like ours"
-                },
-                {
-                  name: "leastamount",
-                  title: "The least amount you would feel comfortable paying"
-                }
-              ]
-            }
-          ]
+          ],
         },
         {
-          questions: [
+          name: "page7",
+          elements: [
+            {
+              type: "html",
+              name: "question2",
+              html: "<h2>CommunityLINK Supports and Services Provided</h2>",
+            },
             {
               type: "text",
-              name: "email",
+              name:
+                "number_of_vulnerable_students_identified_in_your_school_district",
               title:
-                'Thank you for taking our survey. Please enter your email address, then press the "Submit" button.'
-            }
-          ]
-        }
-      ]
+                "Number of vulnerable students identified in your school district",
+              inputType: "number",
+            },
+            {
+              type: "text",
+              name: "number_of_students_supported_through_CommunityLINK",
+              title: "Number of students supported through CommunityLINK",
+              inputType: "number",
+            },
+            {
+              type: "text",
+              name:
+                "percentage_of_student_population_supported_through_CommunityLINK",
+              title:
+                "Percentage of student population supported through CommunityLINK ",
+              inputType: "number",
+              placeHolder: "%",
+            },
+            {
+              type: "html",
+              name: "question3",
+              html: "<h3>Academic</h3>",
+            },
+            {
+              type: "text",
+              name: "number_of_students_supported_in_this_category",
+              title: "Number of students supported in this category",
+              inputType: "number",
+            },
+            {
+              type: "checkbox",
+              name: "types_of_supports_and_services_provided",
+              title: "Types of Supports and Services Provided",
+              choices: [
+                {
+                  value: "Early Intervention ",
+                  text: "Early Intervention ",
+                },
+                {
+                  value: "Homework, Tutoring, and Reading ",
+                  text: "Homework, Tutoring, and Reading ",
+                },
+                {
+                  value: "Family Literacy ",
+                  text: "Family Literacy ",
+                },
+                {
+                  value: "Other (specify)",
+                  text: "Other (specify)",
+                },
+              ],
+            },
+            {
+              type: "comment",
+              name: "types_of_supports_and_services_provided_other",
+              visibleIf:
+                "{types_of_supports_and_services_provided} = ['Other (specify)']",
+              titleLocation: "hidden",
+            },
+          ],
+        },
+        {
+          name: "page8",
+          elements: [
+            {
+              type: "html",
+              name: "social_emotional_behavioural",
+              html: "<h2>Social, Emotional & Behavioural </h2>",
+            },
+            {
+              type: "text",
+              name:
+                "number_of_students_supported_in_social_emotional_behavioural",
+              title: "Number of students supported in this category",
+              inputType: "number",
+            },
+            {
+              type: "checkbox",
+              name: "social_emotional_behavioural_supports_services",
+              title: "Types of Supports and Services Provided",
+              choices: [
+                {
+                  value: "Community Agency Referral",
+                  text: "Community Agency Referral",
+                },
+                {
+                  value: "After School Arts and Recreation",
+                  text: "After School Arts and Recreation",
+                },
+                {
+                  value: "Peer Mentorship Support",
+                  text: "Peer/ Mentorship Support",
+                },
+                {
+                  value: "Other",
+                  text: "Other",
+                },
+              ],
+            },
+            {
+              type: "comment",
+              name: "social_emotional_behavioural_supports_services_other",
+              visibleIf:
+                "{social_emotional_behavioural_supports_services} = ['Other']",
+              titleLocation: "hidden",
+            },
+          ],
+        },
+        {
+          name: "page9",
+          elements: [
+            {
+              type: "html",
+              name: "food_and_nutrition",
+              html: "<h2>Food and Nutrition</h2>",
+            },
+            {
+              type: "text",
+              name: "food_and_nutrition_breakfast",
+              title: "Breakfast",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "food_and_nutrition_lunch",
+              title: "Lunch",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "food_and_nutrition_snacks",
+              title: "Snacks",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "food_and_nutrition_school_vacation",
+              title: "School Vacation",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "food_and_nutrition_other",
+              title: "Other",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+            {
+              type: "text",
+              name: "food_and_nutrition_total",
+              title: "Food and Nutrition Total",
+              inputType: "number",
+              placeHolder: "$0.00",
+            },
+          ],
+        },
+        {
+          name: "page10",
+          elements: [
+            {
+              type: "comment",
+              name: "further_comments",
+              title:
+                "Comments (write-in box ) The Ministry of Education would like to capture your successes for the reporting period (i.e. Priorities, Concerns, Innovations, Partnerships)  ",
+              rows: 18,
+            },
+          ],
+        },
+      ],
     };
+
     var model = new SurveyVue.Model(json);
     model.onComplete.add(function (sender, options) {
       console.log(JSON.stringify(sender.data));
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://test.bced.gov.bc.ca/educ_forms_service/form.php");
+      xhr.open(
+        "POST",
+        "http://test.bced.gov.bc.ca/educ_forms_service/form.php"
+      );
       xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
       xhr.send(JSON.stringify(sender.data));
     });
     return {
-      survey: model
-      
+      survey: model,
     };
-  }
+  },
 };
 </script>
 
