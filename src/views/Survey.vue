@@ -177,8 +177,12 @@ export default {
     };
     var model = new SurveyVue.Model(json);
     model.onComplete.add(function (sender, options) {
-  console.log(JSON.stringify(sender.data));
-});
+      console.log(JSON.stringify(sender.data));
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "http://test.bced.gov.bc.ca/educ_forms_service/form.php");
+      xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+      xhr.send(JSON.stringify(sender.data));
+    });
     return {
       survey: model
       
