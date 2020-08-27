@@ -520,6 +520,7 @@ export default {
       ],
     };
 
+
     var model = new SurveyVue.Model(json);
     model.onComplete.add(function (sender, options) {
       console.log(JSON.stringify(sender.data));
