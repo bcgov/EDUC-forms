@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <!-- If you want to hide survey, comment the lines below -->
-    <h2>SurveyJS Library - a sample survey below</h2>
     <survey :survey="survey"></survey>
   </div>
 </template>
@@ -31,20 +30,19 @@ customWidget(SurveyVue);
 
 SurveyVue.Serializer.addProperty("question", "tag:number");
 
+
 export default {
   components: {
     Survey,
   },
+
   data() {
     var json = {
+      title: "Ministry of Education CommunityLINK Annual Report 2020/21",
       pages: [
         {
           name: "page1",
           elements: [
-            {
-              type: "html",
-              name: "question4",
-            },
             {
               type: "html",
               name: "contact_information",
@@ -117,11 +115,13 @@ export default {
               placeHolder: "$0.00",
             },
             {
-              type: "text",
-              name: "total_20xx_communitylink_funding",
+              type: "expression",
+              name: "total_2xxx_communitylink_funding",
               title: "Total 20xx/xx CommunityLINK Funding",
-              inputType: "number",
-              placeHolder: "$0.00",
+              expression:
+                "{20xx_communitylink_funding}+{carry-over-funding-from-previous-years}+{funding_leveraged_from_other_sources}",
+              displayStyle: "currency",
+              currency: "CAD",
             },
           ],
         },
@@ -166,11 +166,12 @@ export default {
               placeHolder: "$0.00",
             },
             {
-              type: "text",
+              type: "expression",
               name: "academic_support_total",
               title: "Academic Support Total",
-              inputType: "number",
-              placeHolder: "$0.00",
+              expression:
+                "{academic_support_teacher}+{academic_support_educational_assistant}+{academic_support_other_value}",
+              displayStyle: "currency",
             },
           ],
         },
@@ -241,13 +242,12 @@ export default {
               placeHolder: "$0.00",
             },
             {
-              type: "text",
+              type: "expression",
               name: "social_emotional_behavioural_support_total",
-              visibleIf:
-                "{social_emotional_behavioural_support_other} notempty",
               title: "Social, Emotional, Behavioural Support Total",
-              titleLocation: "top",
-              placeHolder: "$0.00",
+              expression:
+                "{social_emotional_behavioural_support_teacher}+{social_emotional_behavioural_support_youth_worker}+{social_emotional_behavioural_support_indigenous_support_worker}+{social_emotional_behavioural_support_educational_assistant}+{social_emotional_behavioural_support_social_worker}+{social_emotional_behavioural_support_mental_health_worker}+{social_emotional_behavioural_support_other_value}",
+              displayStyle: "currency",
             },
           ],
         },
@@ -261,7 +261,7 @@ export default {
             },
             {
               type: "text",
-              name: "question1",
+              name: "food_nutrition_breakfast",
               title: "Breakfast",
               inputType: "number",
               placeHolder: "$0.00",
@@ -288,13 +288,12 @@ export default {
               placeHolder: "$0.00",
             },
             {
-              type: "text",
+              type: "expression",
               name: "food_nutrition_total",
-              visibleIf:
-                "{social_emotional_behavioural_support_other} notempty",
               title: "Food & Nutrition Total",
-              titleLocation: "top",
-              placeHolder: "$0.00",
+              expression:
+                "{food_nutrition_breakfast}+{food_nutrition_lunch}+{food_nutrition_snack}+{food_nutrition_school_vacation}",
+              displayStyle: "currency",
             },
           ],
         },
@@ -307,18 +306,19 @@ export default {
               html: "<h2>Summary</h2>",
             },
             {
-              type: "text",
+              type: "expression",
               name: "total_expenditures",
               title: "Total Expenditures",
-              inputType: "number",
-              placeHolder: "$0.00",
+              expression:
+                "{academic_support_total}+{social_emotional_behavioural_support_total}+{food_nutrition_total}\n",
             },
             {
-              type: "text",
-              name: "unspent_funding",
+              type: "expression",
+              name: "unspent_funding_current_year",
               title: "Unspent Funding (current year)",
-              inputType: "number",
-              placeHolder: "$0.00",
+              expression:
+                "{total_2xxx_communitylink_funding}-{total_expenditures}",
+              displayStyle: "currency",
             },
             {
               type: "comment",
@@ -518,8 +518,8 @@ export default {
           ],
         },
       ],
+      showProgressBar: "bottom",
     };
-
 
     var model = new SurveyVue.Model(json);
     model.onComplete.add(function (sender, options) {
@@ -530,7 +530,7 @@ export default {
         "http://test.bced.gov.bc.ca/educ_forms_service/form.php"
       );
       xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-      xhr.send(JSON.stringify(sender.data));
+      xhr.send("Ministry of Education CommunityLINK Annual Report 2020/21:\n" + JSON.stringify(sender.data));
     });
     return {
       survey: model,
