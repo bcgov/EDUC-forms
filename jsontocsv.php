@@ -186,33 +186,11 @@ print substr($columns, 0, -1);
 Print "\ndata\n";
 print substr($data, 0, -1);
 
-/*
+
 $myfile = fopen("submission.csv", "w") or die("Unable to open file!");
 $txt = $columns ."\n". $data;
 fwrite($myfile, $txt);
 fclose($myfile);
-*/
-print "hello world";
-try{
-    print "Sending mail";
-    $to      = 'shaun.lum@gov.bc.ca';
-    $subject = 'New Submission to FORM';
-    $from = 'apache@trinity.educ.gov.bc.ca';
-    $message = 'A New submission has been submitted by USER';
-    $headers  = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-    
-    // Create email headers
-    $headers .= 'From: '.$from."\r\n".
-        'Reply-To: '.$from."\r\n" .
-        'X-Mailer: PHP/' . phpversion();
-    
-    mail($to, $subject, $message, $headers);
-    print "compelted mail mail";
-}catch(Exception $e){
-    print "Error";
-    print $e;
-}
 
 
 ?>
