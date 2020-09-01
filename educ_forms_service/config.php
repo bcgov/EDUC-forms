@@ -32,7 +32,6 @@ $connectionParams = array(
   'service' => true
 );
 
-
 try{
   $conn = DriverManager::getConnection($connectionParams, $config);
   // Database query builder
@@ -51,10 +50,11 @@ try{
   }
   */
 
-  /*
+  
   //INSERT IN TO TABLE
+/*
   $sql = "INSERT INTO submissions (name, email)
-  VALUES ('shaun', 'shaun.lum@gov.bc.ca')";
+  VALUES ('blah', 'blah')";
   $stmt = $conn->query($sql); 
   */
 
@@ -69,7 +69,7 @@ try{
 
   //Close connection
   $conn->close();
-  
+
 }catch(Exception $e){
   print "Error\n";
   print $e;
