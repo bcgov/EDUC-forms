@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- If you want to hide survey, comment the lines below -->
-    <div class="card" style="width: 50%">
+    <div class="card align-middle">
       <survey :survey="survey"></survey>
     </div>
   </div>
