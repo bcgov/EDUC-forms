@@ -1,4 +1,4 @@
-# forms2
+# Survey JS Form
 
 ## Project setup
 ```
