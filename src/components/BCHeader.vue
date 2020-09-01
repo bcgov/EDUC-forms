@@ -19,74 +19,9 @@
               alt="B.C. Government Logo"
             />
           </a>
-          <h1>Student Achievement MVP</h1>
-        </div>
-        <div class="other">
-          <a class="nav-btn">
-            <i class="fas fa-bars" id="menu"></i>
-          </a>
-          <!--
-      This place is for anything that needs to be right aligned
-      beside the logo.
-    -->
-        </div>
+        </div>   
       </div>
     </header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary-nav burgernav">
-      <button
-        class="navbar-toggler collapsed"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarColor01"
-        aria-controls="navbarColor01"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="navbar-collapse collapse" id="navbarColor01" style="">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active"></li>
-          <li>
-            <router-link class="nav-link" to="/"
-              >Home <span class="sr-only">(current)</span></router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/students">Students</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/course-achievements"
-              >Course Achievements</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/courses">Courses</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/program-rules"
-              >Program Rules</router-link
-            >
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <nav class="navigation-main" id="navbar">
-      <div class="container">
-        <ul>
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/students">Students</router-link></li>
-          <li>
-            <router-link to="/course-achievements"
-              >Course Achievements</router-link
-            >
-          </li>
-          <!-- <li><router-link :to="{path: '/course-achievements/pen/' + pen}">Course Achievements</router-link></li> -->
-          <li><router-link to="/courses">Courses</router-link></li>
-          <li><router-link to="/program-rules">Program Rules</router-link></li>
-        </ul>
-      </div>
-    </nav>
   </div>
 </template>
 
