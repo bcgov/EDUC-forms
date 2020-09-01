@@ -1,29 +1,18 @@
 <template>
-  <div class="container">
-    <div class="col-lg-3 centered">
-      <img src="../assets/logo.png" />
-    </div>
-    <div class="col-lg-9 jumbotron">
-      <h1>SurveyJS + VueJS bolierplate</h1>
-      <p>
-        We have been developing and supporting our library for several years. We helped hundreds of companies across many industries. We carefully reviewed every survey and form from our customerscustomers to add the necessary functionality that covers all the popular scenarios.
-        We are confident, that you can build almost everything, that popular cloud services offer, using SurveyJS library. You can extend our SurveyJS Library and change its behavior.
-      </p>
-    </div>
+  <div class="home">
+    <img alt="Vue logo" src="../assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
-import "bootstrap/dist/css/bootstrap.css";
+// @ is an alias to /src
+import HelloWorld from '@/components/HelloWorld.vue'
 
-export default {};
-</script>
-
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+export default {
+  name: 'Home',
+  components: {
+    HelloWorld
+  }
 }
-</style>
+</script>
