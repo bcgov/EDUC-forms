@@ -6,6 +6,7 @@ node_modules
 # local env files
 .env.local
 .env.*.local
+./educ_forms_service/config/.env
 
 # Log files
 npm-debug.log*
