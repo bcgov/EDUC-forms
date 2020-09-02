@@ -37,38 +37,43 @@ try{
   // Database query builder
   $qb = $conn->createQueryBuilder(); 
   
-  /*
+
   //CREATE A TABLE
+
+/*
+  $sql ="DROP TABLE submissions";
+  if ($conn->query($sql) === TRUE) {
+    echo "Table dropped";
+  } else {
+    echo "Error dropping table: " . $conn->error;
+  }
+  */
+/*
   $sql = "CREATE TABLE submissions(
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(50)
+    form_name VARCHAR(255) NOT NULL,
+    submission_data CLOB
     )";
   if ($conn->query($sql) === TRUE) {
     echo "Table employees created successfully";
   } else {
     echo "Error creating table: " . $conn->error;
   }
-  */
-
-  
+*/
   //INSERT IN TO TABLE
 /*
-  $sql = "INSERT INTO submissions (name, email)
-  VALUES ('blah', 'blah')";
+  $sql = "INSERT INTO submissions (form_name, submission_data)
+  VALUES ('community-link', '{hello: world}')";
   $stmt = $conn->query($sql); 
-  */
-
+*/
 
   /* DISPLAY ALL SUBMISSIONS */
-  $sql2 = "SELECT * FROM submissions";
-  $stmt2 = $conn->query($sql2); 
-  while ($row = $stmt2->fetch()) {
-    print_r($row);
-  }
 
+  // $sql2 = "SELECT * FROM submissions";
+  // $stmt2 = $conn->query($sql2); 
+  // while ($row = $stmt2->fetch()) {
+  //   print_r($row);
+  // }
 
-  //Close connection
-  $conn->close();
 
 }catch(Exception $e){
   print "Error\n";

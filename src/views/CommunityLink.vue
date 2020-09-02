@@ -68,6 +68,12 @@ export default {
      "name": "question4",
      "title": "Question 2",
      "placeHolder": "Q2"
+    },
+    {
+     "type": "file",
+     "name": "question5",
+     "title": "Add your Files",
+     "maxSize": 0
     }
    ]
   }
