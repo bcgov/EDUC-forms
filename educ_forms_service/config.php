@@ -16,6 +16,7 @@ $dotenv->load();
 // Database classes
 use Doctrine\Common\ClassLoader;
 use Doctrine\DBAL\DriverManager;
+use Doctrine\DBAL\ParameterType;
 
 // Database config
 $config = new Doctrine\DBAL\Configuration();
@@ -67,13 +68,13 @@ try{
 */
 
   /* DISPLAY ALL SUBMISSIONS */
-
-  // $sql2 = "SELECT * FROM submissions";
-  // $stmt2 = $conn->query($sql2); 
-  // while ($row = $stmt2->fetch()) {
-  //   print_r($row);
-  // }
-
+/*
+   $sql2 = "SELECT * FROM submissions";
+   $stmt2 = $conn->query($sql2); 
+   while ($row = $stmt2->fetch()) {
+     print_r($row);
+   }
+*/
 
 }catch(Exception $e){
   print "Error\n";

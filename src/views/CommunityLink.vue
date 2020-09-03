@@ -46,6 +46,41 @@ export default {
    "name": "page1",
    "elements": [
     {
+     "type": "dropdown",
+     "name": "question8",
+     "choices": [
+      "item1",
+      "item2",
+      "item3"
+     ]
+    },
+    {
+     "type": "comment",
+     "name": "question7"
+    },
+    {
+     "type": "imagepicker",
+     "name": "question6",
+     "choices": [
+      {
+       "value": "lion",
+       "imageLink": "https://surveyjs.io/Content/Images/examples/image-picker/lion.jpg"
+      },
+      {
+       "value": "giraffe",
+       "imageLink": "https://surveyjs.io/Content/Images/examples/image-picker/giraffe.jpg"
+      },
+      {
+       "value": "panda",
+       "imageLink": "https://surveyjs.io/Content/Images/examples/image-picker/panda.jpg"
+      },
+      {
+       "value": "camel",
+       "imageLink": "https://surveyjs.io/Content/Images/examples/image-picker/camel.jpg"
+      }
+     ]
+    },
+    {
      "type": "text",
      "name": "question2",
      "title": "Email",
@@ -83,14 +118,19 @@ export default {
 
     var model = new SurveyVue.Model(json);
     model.onComplete.add(function (sender) {
-      console.log(JSON.stringify(sender.data));
+      let senderData = sender.data;
+      
+      senderData.form_name = "Ministry of Education CommunityLINK Annual Report 2020/21";
+      senderData.email = "program area"
+      console.log(senderData);
+      console.log(JSON.stringify(senderData));
       var xhr = new XMLHttpRequest();
       xhr.open(
         "POST",
         "http://test.bced.gov.bc.ca/educ_forms_service/form.php"
       );
       xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-      xhr.send("Ministry of Education CommunityLINK Annual Report 2020/21:\n" + JSON.stringify(sender.data));
+      xhr.send( JSON.stringify(senderData));
     });
     return {
       survey: model,
