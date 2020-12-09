@@ -31,35 +31,36 @@ $connectionParams = array(
   'driver' => 'oci8', // http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html 
   'service' => true
 );
+print getenv('DB_NAME');
 
-
+// Database connection
 try{
   $conn = DriverManager::getConnection($connectionParams, $config);
   // Database query builder
   $qb = $conn->createQueryBuilder(); 
-  
   /*
-  //CREATE A TABLE
+
+  //Create a TABLE
   $sql = "CREATE TABLE submissions(
     name VARCHAR(255) NOT NULL,
     email VARCHAR(50)
     )";
   if ($conn->query($sql) === TRUE) {
     echo "Table employees created successfully";
-  } else {
+} else {
     echo "Error creating table: " . $conn->error;
-  }
-  */
+}
 
-  /*
-  //INSERT IN TO TABLE
-  $sql = "INSERT INTO submissions (name, email)
-  VALUES ('shaun', 'shaun.lum@gov.bc.ca')";
-  $stmt = $conn->query($sql); 
-  */
+    */
+
+/*
+    $sql = "INSERT INTO submissions (name, email)
+    VALUES ('shaun', 'shaun.lum@gov.bc.ca')";
+    $stmt = $conn->query($sql); 
+*/
 
 
-  /* DISPLAY ALL SUBMISSIONS */
+
   $sql2 = "SELECT * FROM submissions";
   $stmt2 = $conn->query($sql2); 
   while ($row = $stmt2->fetch()) {
@@ -67,10 +68,11 @@ try{
   }
 
 
-  //Close connection
-  $conn->close();
   
+  $conn->close();
 }catch(Exception $e){
   print "Error\n";
   print $e;
 }
+
+
